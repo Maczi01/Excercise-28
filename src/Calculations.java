@@ -15,7 +15,7 @@ public class Calculations {
     BigDecimal sumOfNetto(List<Product> list){
         BigDecimal sum = BigDecimal.ZERO;
         for (Product p : list) {
-            BigDecimal nettoPrice = p.getPrice().subtract(p.getPrice().multiply(BigDecimal.valueOf(p.getTax())));
+            BigDecimal nettoPrice = p.getPrice().divide(BigDecimal.ONE.add(BigDecimal.valueOf(p.getTax())));
             sum = sum.add(nettoPrice);
         }
         return sum.setScale(2, RoundingMode.HALF_UP);
